@@ -1,8 +1,9 @@
 package com.example.zhekadoe;
 
-import com.example.zhekadoe.entities.Entity;
+import com.example.zhekadoe.entities.*;
 
 import java.util.*;
+import java.util.stream.Stream;
 
 /**
  * Представляет поле симуляции, является набором ячеек с координатами от левого верхнего угла
@@ -33,6 +34,10 @@ public class Field {
             }
         }
         return cells;
+    }
+
+    Stream<Entity> getEntities(Class<? extends Entity> type) {
+        return fields.values().stream().filter(type::isInstance);
     }
 
     public Optional<Entity> get(Cell c) {

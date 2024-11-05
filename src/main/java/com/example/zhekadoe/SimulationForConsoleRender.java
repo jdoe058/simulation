@@ -28,7 +28,12 @@ public class SimulationForConsoleRender extends Simulation<String> {
 
     @Override
     public String getImage() {
-        StringBuilder builder = new StringBuilder("%s, %d\n".formatted(title, countIteration));
+        StringBuilder builder = new StringBuilder("\n%s %s%d %s%d %s%d %s%d %04d\n".formatted(
+                title,
+                "..", field.getEmptyCellCount(),
+                SYMBOLS.GRASS.image, field.getEntities(Grass.class).count(),
+                SYMBOLS.HERBIVORE.image, field.getEntities(Herbivore.class).count(),
+                SYMBOLS.PREDATOR.image, field.getEntities(Predator.class).count(), countIteration));
         for (int i = 0; i < field.height; i++) {
             for (int j = 0; j < field.width; j++) {
                 builder.append(field.get(new Cell(j, i)).orElse(EMPTY_ENTITY).image);
@@ -52,6 +57,7 @@ public class SimulationForConsoleRender extends Simulation<String> {
     public static void main(String[] args) {
         List<Simulation<?>> s = List.of(new SimulationForConsoleRender("Simulation One", 20, 10));
         s.get(0).init();
+        //s.get(0).countIteration = 100000;
         System.out.println(s.get(0).getImage());
     }
 }
