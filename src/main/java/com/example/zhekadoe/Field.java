@@ -6,13 +6,75 @@ import java.util.*;
 import java.util.stream.Stream;
 
 /**
- * Представляет поле симуляции, является набором ячеек с координатами от левого верхнего угла
+ * Представляет поле симуляции,
+ * является набором ячеек с координатами от левого верхнего угла
  */
 public class Field {
     final public int width;
     final public int height;
     final public int size;
-    final private Map<Cell, Entity> fields = new HashMap<>();
+    final private Map<Cell, Entity> entities = new HashMap<>();
+
+    /**
+     * Возвращает множество соседних ячеек, содержащих объекты целевого типа,
+     * или свободные ячейки если целевой тип не указан
+     *
+     * @param cell       целевая ячейка
+     * @param targetType целевой тип существ или *null* для свободных соседей
+     * @return множество соседних ячеек
+     */
+    private Set<Cell> getNeighbours(Cell cell, Class<? extends Entity> targetType) {
+        HashSet<Cell> cells = new HashSet<>();
+        for (int i = Math.max(0, cell.y() - 1); i < Math.min(height, cell.y() + 2); i++) {
+            for (int j = Math.max(0, cell.x() - 1); j < Math.min(width, cell.x() + 2); j++) {
+                if (i != cell.y() || j != cell.x()) {
+                    Cell c = new Cell(j, i);
+                    if (targetType == null) {
+                        if (!entities.containsKey(c)) {
+                            cells.add(c);
+                        }
+                    } else if (targetType.isInstance(entities.get(c))) {
+                        cells.add(c);
+                    }
+                }
+            }
+        }
+        return cells;
+    }
+
+    /**
+     * Реализует поиск цели
+     * <p>
+     * Использует <a href="https://ru.algorithmica.org/cs/shortest-paths/bfs/">алгоритм поиска в ширину</a>.
+     *
+     * @param start      стартовая ячейка
+     * @param targetType целевой тип существ
+     * @return путь до цели
+     */
+    public Cell getTargetPath(Cell start, Class<? extends Entity> targetType) {
+        Set<Cell> burningCells = new HashSet<>();
+        Queue<Cell> queue = new ArrayDeque<>();
+
+        queue.add(start);
+        burningCells.add(start);
+        while (!queue.isEmpty()) {
+            start = queue.poll();
+
+            var targetNeighbours = getNeighbours(start, targetType);
+            if (!targetNeighbours.isEmpty()) {
+                return targetNeighbours.stream().findAny().get();
+            }
+            var emptyNeighbours = getNeighbours(start, null);
+            emptyNeighbours.removeAll(burningCells);
+
+            if (!emptyNeighbours.isEmpty()) {
+                queue.addAll(emptyNeighbours);
+                burningCells.addAll(emptyNeighbours);
+            }
+        }
+
+        return null;
+    }
 
     public Field(int width, int height) {
         this.width = width;
@@ -21,30 +83,25 @@ public class Field {
     }
 
     public int getEmptyCellCount() {
-        return size - fields.size();
+        return size - entities.size();
     }
 
-    Set<Cell> getNeighboringCells(Cell c) {
-        HashSet<Cell> cells = new HashSet<>();
-        for (int i = Math.max(0, c.y() - 1); i < Math.min(height, c.y() + 2); i++) {
-            for (int j = Math.max(0, c.x() - 1); j < Math.min(width, c.x() + 2); j++) {
-                if (i != c.y() || j != c.x()) {
-                    cells.add(new Cell(j, i));
-                }
-            }
-        }
-        return cells;
-    }
 
-    Stream<Entity> getEntities(Class<? extends Entity> type) {
-        return fields.values().stream().filter(type::isInstance);
+    Stream<Runnable> getEntities(Class<? extends Runnable> type) {
+        return entities.values().stream().filter(type::isInstance).map(x -> (Runnable) x);
     }
 
     public Optional<Entity> get(Cell c) {
-        return Optional.ofNullable(fields.get(c));
+        return Optional.ofNullable(entities.get(c));
     }
 
-    public void put(Cell cell, Entity e) {
-        fields.put(cell, e);
+    public void put(Entity e, Cell cell) {
+        e.cell = cell;
+        entities.put(cell, e);
+    }
+
+    public void move(Entity e, Cell c) {
+        entities.remove(e.cell);
+        put(e, c);
     }
 }

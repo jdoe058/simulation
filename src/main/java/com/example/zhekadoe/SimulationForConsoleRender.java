@@ -10,8 +10,8 @@ public class SimulationForConsoleRender extends Simulation<String> {
         TREE("\uD83C\uDF33"),
         GRASS("\uD83C\uDF3D"),
         PREDATOR("\uD83E\uDD81"),
-        HERBIVORE("\uD83D\uDC37"),
-        DANGER_HERBIVORE("\uD83D\uDC17");
+        HERBIVORE("\uD83D\uDC37");
+        //DANGER_HERBIVORE("\uD83D\uDC17");
 
         final public String image;
 
@@ -23,7 +23,7 @@ public class SimulationForConsoleRender extends Simulation<String> {
     final static private Entity EMPTY_ENTITY = new Entity("..");
 
     public SimulationForConsoleRender(String title, int width, int height) {
-        super(title, width, height);
+        super(title, width, height, System.out::println);
     }
 
     @Override
@@ -49,15 +49,22 @@ public class SimulationForConsoleRender extends Simulation<String> {
                 new SpawnAction(() -> new Rock(SYMBOLS.ROCK.image), setEntityInRandomEmptyCell, (int) (field.size * .1)),
                 new SpawnAction(() -> new Tree(SYMBOLS.TREE.image), setEntityInRandomEmptyCell, (int) (field.size * .1)),
                 new SpawnAction(() -> new Grass(SYMBOLS.GRASS.image), setEntityInRandomEmptyCell, (int) (field.size * .18)),
-                new SpawnAction(() -> new Predator(SYMBOLS.PREDATOR.image), setEntityInRandomEmptyCell, (int) (field.size * .03)),
-                new SpawnAction(() -> new Herbivore(SYMBOLS.HERBIVORE.image), setEntityInRandomEmptyCell, (int) (field.size * .07))
+                new SpawnAction(() -> new Predator(SYMBOLS.PREDATOR.image, field, Herbivore.class),
+                        setEntityInRandomEmptyCell, (int) (field.size * .01)),
+                new SpawnAction(() -> new Herbivore(SYMBOLS.HERBIVORE.image, field, Grass.class),
+                        setEntityInRandomEmptyCell, (int) (field.size * .07))
         );
     }
 
     public static void main(String[] args) {
-        List<Simulation<?>> s = List.of(new SimulationForConsoleRender("Simulation One", 20, 10));
-        s.get(0).init();
-        //s.get(0).countIteration = 100000;
-        System.out.println(s.get(0).getImage());
+        List<Simulation<?>> simulations = List.of(
+                new SimulationForConsoleRender("Simulation One", 80, 4),
+                new SimulationForConsoleRender("Simulation Two", 80, 4)
+        );
+
+        for(var s: simulations) {
+            s.init();
+            s.run();
+        }
     }
 }

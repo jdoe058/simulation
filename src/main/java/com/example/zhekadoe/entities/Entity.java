@@ -1,5 +1,7 @@
 package com.example.zhekadoe.entities;
 
+import com.example.zhekadoe.Cell;
+
 public class Entity {
     /**
      * Абстракция изображения, может содержать эмоджи символ, путь к файлу изображения,
@@ -9,6 +11,7 @@ public class Entity {
      * кода, не давая существенных преимуществ
      */
     public String image;
+    public Cell cell;
 
     public Entity(String image) {
         this.image = image;
