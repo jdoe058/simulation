@@ -5,17 +5,15 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.Consumer;
 
-abstract public class Simulation<Image> implements Runnable {
+abstract public class Simulation implements Runnable, Renderable {
     protected Field field;
 
     final public String title;
     protected int countIteration;
     final private Random random = new Random();
-    final private Consumer<Image> render;
 
-    public Simulation(String title, int width, int height, Consumer<Image> render) {
+    public Simulation(String title, int width, int height) {
         this.title = title;
-        this.render = render;
         field = new Field(width, height);
         countIteration = 0;
     }
@@ -32,8 +30,6 @@ abstract public class Simulation<Image> implements Runnable {
         field.put(e, cell);
     };
 
-    abstract public Image getImage();
-
     abstract List<Runnable> getFirstSpawnActions();
 
     void init() {
@@ -44,12 +40,13 @@ abstract public class Simulation<Image> implements Runnable {
         // TO-DO добавить сравнение мало травы и много травоядных или мало травоядных и много хищников
         return countIteration++ > 5 || field.getEmptyCellCount() < 10;
     }
+
     @Override
     public void run() {
         while (!isOver()) {
-            var s = getImage();
+            prepareImage();
             field.turnCreature();
-            render.accept(s);
+            renderImage();
         }
     }
 }
