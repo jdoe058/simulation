@@ -16,7 +16,9 @@ public class Creature extends Entity implements Moveable {
     public void run() {
         var v = field.getTargetPath(cell, targetType);
         if (v != null) {
-            field.move(this, v);
+            field.messages.add(this + " -> " + field.get(v).get());
+            field.waitToRemove.add(this.cell);
+            cell = v;
         }
     }
 }

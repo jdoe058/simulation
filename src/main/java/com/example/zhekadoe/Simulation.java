@@ -50,13 +50,9 @@ abstract public class Simulation<Image> implements Runnable {
     @Override
     public void run() {
         while (!isOver()) {
-            render.accept(getImage());
-            try {
-                field.getEntities(Moveable.class).forEach(Runnable::run);
-            } catch (ConcurrentModificationException e) {
-                e.printStackTrace();
-
-            }
+            var s = getImage();
+            field.turnCreature();
+            render.accept(s);
         }
     }
 }

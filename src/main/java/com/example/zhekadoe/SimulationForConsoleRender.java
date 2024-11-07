@@ -35,11 +35,19 @@ public class SimulationForConsoleRender extends Simulation<String> {
                 SYMBOLS.HERBIVORE.image, field.getEntities(Herbivore.class).count(),
                 SYMBOLS.PREDATOR.image, field.getEntities(Predator.class).count(), countIteration));
         for (int i = 0; i < field.height; i++) {
+
+
             for (int j = 0; j < field.width; j++) {
                 builder.append(field.get(new Cell(j, i)).orElse(EMPTY_ENTITY).image);
             }
-            builder.append('\n');
+            builder
+                    .append("\t\t").append(field.messages.poll())
+                    .append("\t\t").append(field.messages.poll())
+                    .append('\n');
+
         }
+        builder.append(field.messages);
+        field.messages.clear();
         return builder.toString();
     }
 
@@ -50,7 +58,7 @@ public class SimulationForConsoleRender extends Simulation<String> {
                 new SpawnAction(() -> new Tree(SYMBOLS.TREE.image), setEntityInRandomEmptyCell, (int) (field.size * .1)),
                 new SpawnAction(() -> new Grass(SYMBOLS.GRASS.image), setEntityInRandomEmptyCell, (int) (field.size * .18)),
                 new SpawnAction(() -> new Predator(SYMBOLS.PREDATOR.image, field, Herbivore.class),
-                        setEntityInRandomEmptyCell, (int) (field.size * .01)),
+                        setEntityInRandomEmptyCell,  (int) (field.size * .01)),
                 new SpawnAction(() -> new Herbivore(SYMBOLS.HERBIVORE.image, field, Grass.class),
                         setEntityInRandomEmptyCell, (int) (field.size * .07))
         );
@@ -58,8 +66,8 @@ public class SimulationForConsoleRender extends Simulation<String> {
 
     public static void main(String[] args) {
         List<Simulation<?>> simulations = List.of(
-                new SimulationForConsoleRender("Simulation One", 80, 4),
-                new SimulationForConsoleRender("Simulation Two", 80, 4)
+                //new SimulationForConsoleRender("Simulation One", 80, 4),
+                new SimulationForConsoleRender("Simulation Two", 20, 20)
         );
 
         for(var s: simulations) {

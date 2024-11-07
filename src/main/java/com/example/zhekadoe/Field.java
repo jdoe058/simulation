@@ -3,6 +3,7 @@ package com.example.zhekadoe;
 import com.example.zhekadoe.entities.*;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Stream;
 
 /**
@@ -14,6 +15,8 @@ public class Field {
     final public int height;
     final public int size;
     final private Map<Cell, Entity> entities = new HashMap<>();
+    final public Queue<String> messages = new ArrayDeque<>();
+    final public List<Cell> waitToRemove = new ArrayList<>();
 
     /**
      * Возвращает множество соседних ячеек, содержащих объекты целевого типа,
@@ -86,9 +89,26 @@ public class Field {
         return size - entities.size();
     }
 
+    public void turnCreature() {
+        for (var e : entities.values()) {
+            if (e instanceof Runnable) {
+                ((Runnable) e).run();
+            }
 
-    Stream<Runnable> getEntities(Class<? extends Runnable> type) {
-        return entities.values().stream().filter(type::isInstance).map(x -> (Runnable) x);
+        }
+
+        for (var cell : waitToRemove) {
+            var e = get(cell);
+            if (e.isPresent()) {
+                var c = e.get().cell;
+                entities.replace(e.get().cell, e.get());
+                entities.remove(c);
+            }
+        }
+    }
+
+    Stream<Entity> getEntities(Class<? extends Entity> type) {
+        return entities.values().stream().filter(type::isInstance);
     }
 
     public Optional<Entity> get(Cell c) {
@@ -101,7 +121,9 @@ public class Field {
     }
 
     public void move(Entity e, Cell c) {
+
+        entities.replace(c, e);
         entities.remove(e.cell);
-        put(e, c);
+        e.cell = c;
     }
 }
