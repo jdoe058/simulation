@@ -3,7 +3,6 @@ package com.example.zhekadoe;
 import com.example.zhekadoe.entities.*;
 
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Stream;
 
 /**
@@ -118,12 +117,5 @@ public class Field {
     public void put(Entity e, Cell cell) {
         e.cell = cell;
         entities.put(cell, e);
-    }
-
-    public void move(Entity e, Cell c) {
-
-        entities.replace(c, e);
-        entities.remove(e.cell);
-        e.cell = c;
     }
 }

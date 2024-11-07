@@ -1,9 +1,6 @@
 package com.example.zhekadoe;
 
 import com.example.zhekadoe.entities.Entity;
-import com.example.zhekadoe.entities.Moveable;
-
-import java.util.ConcurrentModificationException;
 import java.util.List;
 import java.util.Random;
 import java.util.function.Consumer;
