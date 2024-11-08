@@ -71,16 +71,12 @@ public class SimulationConsoleRender extends Simulation {
     }
 
     @Override
-    List<Runnable> getFirstSpawnActions() {
-        return List.of(
-                new SpawnAction(() -> new Rock(SYMBOLS.ROCK.image), setEntityInRandomEmptyCell, (int) (field.size * .1)),
-                new SpawnAction(() -> new Tree(SYMBOLS.TREE.image), setEntityInRandomEmptyCell, (int) (field.size * .1)),
-                new SpawnAction(() -> new Grass(SYMBOLS.GRASS.image), setEntityInRandomEmptyCell, (int) (field.size * .18)),
-                new SpawnAction(() -> new Predator(SYMBOLS.PREDATOR.image, field, Herbivore.class),
-                        setEntityInRandomEmptyCell, (int) (field.size * .01)),
-                new SpawnAction(() -> new Herbivore(SYMBOLS.HERBIVORE.image, field, Grass.class),
-                        setEntityInRandomEmptyCell, (int) (field.size * .07))
-        );
+    void init() {
+        spawn(() -> new Rock(SYMBOLS.ROCK.image), .1);
+        spawn(() -> new Tree(SYMBOLS.TREE.image), .1);
+        spawn(() -> new Grass(SYMBOLS.GRASS.image), .18);
+        spawn(() -> new Predator(SYMBOLS.PREDATOR.image, field, Herbivore.class), .01);
+        spawn(() -> new Herbivore(SYMBOLS.HERBIVORE.image, field, Grass.class), .07);
     }
 
     public static void main(String[] args) {

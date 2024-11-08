@@ -1,9 +1,9 @@
 package com.example.zhekadoe;
 
 import com.example.zhekadoe.entities.Entity;
-import java.util.List;
+
 import java.util.Random;
-import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 abstract public class Simulation implements Runnable, Renderable {
     protected Field field;
@@ -18,7 +18,9 @@ abstract public class Simulation implements Runnable, Renderable {
         countIteration = 0;
     }
 
-    protected Consumer<Entity> setEntityInRandomEmptyCell = e -> {
+    abstract void init();
+
+    private Cell getRandomEmptyCell() {
         if (field.getEmptyCellCount() < 1) {
             throw new IndexOutOfBoundsException();
         }
@@ -26,14 +28,17 @@ abstract public class Simulation implements Runnable, Renderable {
         do {
             cell = new Cell(random.nextInt(field.width), random.nextInt(field.height));
         } while (field.get(cell).isPresent());
-        e.cell = cell;
-        field.put(e, cell);
-    };
+        return cell;
+    }
 
-    abstract List<Runnable> getFirstSpawnActions();
-
-    void init() {
-        getFirstSpawnActions().forEach(Runnable::run);
+    protected void spawn(Supplier<Entity> create, double chance) {
+        int count = (int)(field.size * chance);
+        while (count-- > 0) {
+            var cell = getRandomEmptyCell();
+            var e = create.get();
+            e.cell = cell;
+            field.put(e, cell);
+        }
     }
 
     boolean isOver() {

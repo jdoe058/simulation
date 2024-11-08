@@ -16,10 +16,4 @@ public class Entity {
     public Entity(String image) {
         this.image = image;
     }
-
-    @Override
-    public String toString() {
-        // TO-DO: КОСТЫЛЬ, УБРАТЬ ПРИ ПЕРВОЙ ВОЗМОЖНОСТИ
-        return image + cell;
-    }
 }
