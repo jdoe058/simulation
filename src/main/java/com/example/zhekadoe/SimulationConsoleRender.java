@@ -53,8 +53,8 @@ public class SimulationConsoleRender extends Simulation {
                 image[i] += " ".repeat(4) + field.messages.poll();
             }
         }
-        image[field.height] = "%s %s%d %s%d %s%d %s%d %04d".formatted(
-                title, "..", field.getEmptyCellCount(),
+        image[field.height] = "%s(%dx%d) %s%d %s%d %s%d %s%d %04d".formatted(
+                title, field.width, field.height, "..", field.getEmptyCellCount(),
                 SYMBOLS.GRASS.image, field.getEntities(Grass.class).count(),
                 SYMBOLS.HERBIVORE.image, field.getEntities(Herbivore.class).count(),
                 SYMBOLS.PREDATOR.image, field.getEntities(Predator.class).count(), countIteration);
