@@ -25,7 +25,7 @@ abstract public class AliveEntity extends Entity {
 
     public void takeDamage(int amount) {
         health -= amount;
-        System.out.println("%s %s -%dhp".formatted( this.getClass().getSimpleName(), position.toString(), amount));
+        System.out.printf("%s %s -%dhp%n", this.getClass().getSimpleName(), position.toString(), amount);
     }
 
     public void setPosition(Position position) {
