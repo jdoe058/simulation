@@ -1,4 +1,9 @@
-public class Configurator {
+import models.Field;
+import utils.PreyFinder;
+
+import java.util.ArrayList;
+
+public class Loader {
     public static final int DEFAULT_WIDTH = 10;
     public static final int DEFAULT_HEIGHT = 10;
     public static final int DEFAULT_ROCK_PERCENT = 15;
@@ -7,18 +12,18 @@ public class Configurator {
     public static final int DEFAULT_HERBIVORE_PERCENT = 5;
     public static final int DEFAULT_PREDATOR_PERCENT = 2;
 
-    private final EntitySimpleFactory factory;
+    public Simulation configure () {
+        Field field = new Field(DEFAULT_WIDTH, DEFAULT_HEIGHT);
+        PreyFinder preyFinder = new PreyFinder(field);
+        EntitySimpleFactory factory = new EntitySimpleFactory(field, preyFinder);
+        ConsoleRenderer consoleRenderer = new ConsoleRenderer(field, new ArrayList<>());
 
-    public Configurator(EntitySimpleFactory factory) {
-        this.factory = factory;
-    }
-
-    public void configure () {
         create(factory::createRock, DEFAULT_ROCK_PERCENT);
         create(factory::createTree, DEFAULT_TREE_PERCENT);
         create(factory::createGrass, DEFAULT_GRASS_PERCENT);
         create(factory::createHerbivore, DEFAULT_HERBIVORE_PERCENT);
         create(factory::createPredator, DEFAULT_PREDATOR_PERCENT);
+        return new Simulation("Simple Word", field, consoleRenderer);
     }
 
     private void create(Runnable create, int percent) {

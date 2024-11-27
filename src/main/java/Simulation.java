@@ -24,7 +24,8 @@ public class Simulation {
         field.get(AliveEntity.class).forEach(this::setEntityTakeDamageCallback);
         field.get(Creature.class).forEach(this::setEntityCreaturePathCallback);
         while (!isOver()) {
-            consoleRenderer.add("%s: %d".formatted(title, turnCount++));
+            consoleRenderer.add("%s(%dx%d) Step: %02d"
+                    .formatted(title, field.width, field.height,turnCount++));
             turn();
             consoleRenderer.render();
         }

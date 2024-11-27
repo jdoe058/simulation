@@ -67,7 +67,7 @@ public class ConsoleRenderer {
     }
 
     private String getFieldInfoSting() {
-        return "\t%%s %s%d %s %s %s".formatted(
+        return "\t%%s%s%d%s%s%s".formatted(
                 getSpriteForEmptyPosition(), field.freeCapacity(),
                 getFieldEntityCountString(Grass.class),
                 getFieldEntityCountString(Herbivore.class),
