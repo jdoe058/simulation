@@ -5,6 +5,7 @@ import models.Position;
 abstract public class AliveEntity extends Entity {
     private Position position;
     private int health;
+    private DamageCallback damageCallback;
 
     public AliveEntity(Position position, int health) {
         this.position = position;
@@ -25,11 +26,22 @@ abstract public class AliveEntity extends Entity {
 
     public void takeDamage(int amount) {
         health -= amount;
-        System.out.printf("%s %s -%dhp%n", this.getClass().getSimpleName(), position.toString(), amount);
+        if (damageCallback != null) {
+            damageCallback.execute(this, amount);
+        }
+        //System.out.printf("%s %s -%dhp%n", this.getClass().getSimpleName(), position.toString(), amount);
     }
 
     public void setPosition(Position position) {
         this.position = position;
+    }
+
+    public void setDamageCallback(DamageCallback damageCallback) {
+        this.damageCallback = damageCallback;
+    }
+
+    public interface DamageCallback {
+        void execute(AliveEntity entity, int damage);
     }
 }
 

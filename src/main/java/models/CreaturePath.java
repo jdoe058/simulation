@@ -2,8 +2,7 @@ package models;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
+import java.util.*;
 
 public class CreaturePath {
     final private Deque<Position> path;
@@ -40,5 +39,9 @@ public class CreaturePath {
 
     public boolean isSteps() {
         return path.size() > 1;
+    }
+
+    public List<Position> get() {
+        return new ArrayList<>(path);
     }
 }

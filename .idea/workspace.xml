@@ -4,30 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a92e38ef-d1c4-4d1d-a427-fada1db04ae5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Configurator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ConsoleRenderer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/EntitySimpleFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Simulation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/models/CreaturePath.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/models/Field.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/models/Position.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/models/entity/AliveEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/models/entity/Creature.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/models/entity/Entity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/models/entity/Grass.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/models/entity/Herbivore.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/models/entity/Predator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/models/entity/Rock.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/models/entity/Tree.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/utils/PreyFinder.java" afterDir="false" />
+    <list default="true" id="a92e38ef-d1c4-4d1d-a427-fada1db04ae5" name="Changes" comment="hotfix">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Configurator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Configurator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ConsoleRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ConsoleRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Simulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Simulation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/CreaturePath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/CreaturePath.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/entity/AliveEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/entity/AliveEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/entity/Creature.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/entity/Creature.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +32,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "jdoe058"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/jdoe058/simulation.git",
+    "accountId": "bd4b8beb-03c1-4b65-8245-8554f758047e"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -100,6 +97,28 @@
       <option name="presentableId" value="Default" />
       <updated>1732353877021</updated>
     </task>
+    <task id="LOCAL-00001" summary="Entity hierarchy, prey finder">
+      <option name="closed" value="true" />
+      <created>1732623522323</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1732623522323</updated>
+    </task>
+    <task id="LOCAL-00002" summary="hotfix">
+      <option name="closed" value="true" />
+      <created>1732623556396</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1732623556396</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Entity hierarchy, prey finder" />
+    <MESSAGE value="hotfix" />
+    <option name="LAST_COMMIT_MESSAGE" value="hotfix" />
   </component>
 </project>

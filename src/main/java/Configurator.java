@@ -1,11 +1,11 @@
 public class Configurator {
     public static final int DEFAULT_WIDTH = 10;
     public static final int DEFAULT_HEIGHT = 10;
-    public static final int DEFAULT_ROCK_PERCENT = 10;
-    public static final int DEFAULT_TREE_PERCENT = 10;
-    public static final int DEFAULT_GRASS_PERCENT = 20;
-    public static final int DEFAULT_HERBIVORE_PERCENT = 10;
-    public static final int DEFAULT_PREDATOR_PERCENT = 3;
+    public static final int DEFAULT_ROCK_PERCENT = 15;
+    public static final int DEFAULT_TREE_PERCENT = 15;
+    public static final int DEFAULT_GRASS_PERCENT = 10;
+    public static final int DEFAULT_HERBIVORE_PERCENT = 5;
+    public static final int DEFAULT_PREDATOR_PERCENT = 2;
 
     private final EntitySimpleFactory factory;
 
