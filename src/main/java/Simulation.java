@@ -6,38 +6,64 @@ import models.entity.Creature;
 import models.entity.Grass;
 import models.entity.Herbivore;
 
-public class Simulation {
+import java.util.concurrent.atomic.AtomicBoolean;
+
+import static java.lang.Thread.sleep;
+
+
+public class Simulation implements Runnable {
     private final String title;
     private final Field field;
     private final ConsoleRenderer consoleRenderer;
     private int turnCount;
+    private final AtomicBoolean isPaused = new AtomicBoolean(true);
 
     public Simulation(String title,
-            Field field,
-            ConsoleRenderer consoleRenderer) {
+                      Field field,
+                      ConsoleRenderer consoleRenderer) {
         this.title = title;
         this.field = field;
         this.consoleRenderer = consoleRenderer;
     }
 
-    void run() {
+    public void init() {
         field.get(AliveEntity.class).forEach(this::setEntityTakeDamageCallback);
         field.get(Creature.class).forEach(this::setEntityCreaturePathCallback);
-        while (!isOver()) {
-            consoleRenderer.add("%s(%dx%d) Step: %02d"
-                    .formatted(title, field.width, field.height,turnCount++));
-            turn();
-            consoleRenderer.render();
-        }
     }
 
-    boolean isOver() {
-        return field.get(Grass.class).isEmpty() || field.get(Herbivore.class).isEmpty();
+    public boolean isRunning() {
+        return !field.get(Grass.class).isEmpty() && !field.get(Herbivore.class).isEmpty();
     }
 
-    void turn() {
+    public void start() {
+        isPaused.set(false);
+    }
+
+    public void pause() {
+        isPaused.set(true);
+    }
+
+    public void turn() {
+        consoleRenderer.add("%s(%dx%d) Step: %02d"
+                .formatted(title, field.width, field.height, turnCount++));
         field.get(Creature.class).forEach(this::moveCreature);
         field.get(AliveEntity.class).forEach(this::removeCorpse);
+        consoleRenderer.render();
+    }
+
+    public void run() {
+        while (isRunning()) {
+            if (!isPaused.get()) {
+                turn();
+            }
+            try {
+                sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        consoleRenderer.add("Simulation over!");
+        consoleRenderer.render();
     }
 
     void moveCreature(Creature creature) {

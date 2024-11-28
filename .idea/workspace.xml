@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a92e38ef-d1c4-4d1d-a427-fada1db04ae5" name="Changes" comment="applied callback">
+    <list default="true" id="a92e38ef-d1c4-4d1d-a427-fada1db04ae5" name="Changes" comment="Loader">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Configurator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Loader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ConsoleRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ConsoleRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Loader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Configurator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Simulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Simulation.java" afterDir="false" />
     </list>
@@ -118,13 +118,22 @@
       <option name="project" value="LOCAL" />
       <updated>1732702579158</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Loader">
+      <option name="closed" value="true" />
+      <created>1732707437141</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1732707437141</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Entity hierarchy, prey finder" />
     <MESSAGE value="hotfix" />
     <MESSAGE value="applied callback" />
-    <option name="LAST_COMMIT_MESSAGE" value="applied callback" />
+    <MESSAGE value="Loader" />
+    <option name="LAST_COMMIT_MESSAGE" value="Loader" />
   </component>
 </project>

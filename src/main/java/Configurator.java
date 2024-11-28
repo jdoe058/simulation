@@ -3,12 +3,12 @@ import utils.PreyFinder;
 
 import java.util.ArrayList;
 
-public class Loader {
-    public static final int DEFAULT_WIDTH = 10;
-    public static final int DEFAULT_HEIGHT = 10;
+public class Configurator {
+    public static final int DEFAULT_WIDTH = 14;
+    public static final int DEFAULT_HEIGHT = 15;
     public static final int DEFAULT_ROCK_PERCENT = 15;
     public static final int DEFAULT_TREE_PERCENT = 15;
-    public static final int DEFAULT_GRASS_PERCENT = 10;
+    public static final int DEFAULT_GRASS_PERCENT = 15;
     public static final int DEFAULT_HERBIVORE_PERCENT = 5;
     public static final int DEFAULT_PREDATOR_PERCENT = 2;
 

@@ -42,14 +42,16 @@ public class ConsoleRenderer {
             System.out.println(j.next());
             j.remove();
         }
+        System.out.println("1. Turn  \t2. Start\t3. Pause\t4. Exit");
+        System.out.print("Select menu item: ");
         System.out.println();
     }
 
     private List<String> getFieldPicture() {
         List<String> list = new ArrayList<>();
         StringBuilder s = new StringBuilder("  ");
-        for (int i = 0; i < field.height; i++) {
-            s.append("%3d".formatted(i));
+        for (int i = 0; i < field.width; i++) {
+            s.append(" %2d".formatted(i));
         }
         list.add(s.toString());
 
