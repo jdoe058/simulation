@@ -1,30 +1,34 @@
+package view;
+
 import models.Field;
 import models.Position;
-import models.entity.Entity;
-import models.entity.Grass;
-import models.entity.Herbivore;
-import models.entity.Predator;
+import models.entity.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-public class ConsoleRenderer {
+public class ConsoleView implements View<String> {
     public static final String DELIMITER = "\t";
     private final Field field;
     private final Collection<String> storage;
 
-    public ConsoleRenderer(Field field, Collection<String> storage) {
+    public ConsoleView(Field field, Collection<String> storage) {
         this.field = field;
         this.storage = storage;
     }
 
-    void add(String s) {
+    public void add(String s) {
         storage.add(s);
     }
 
-    void render() {
+    public void add(String s, MovingCreature movingCreature, Position position, Entity prey, Position preyPosition) {
+        add(s.formatted(selectEmojiSpriteForEntity(movingCreature.getClass()), getPositionView(position),
+                selectEmojiSpriteForEntity(prey.getClass()), getPositionView(preyPosition)));
+    }
+
+    public void show() {
         Iterator<String> i = getFieldPicture().iterator();
         Iterator<String> j = storage.iterator();
         System.out.println(i.next() + DELIMITER + getFieldInfoSting().formatted(j.next()));
@@ -45,6 +49,10 @@ public class ConsoleRenderer {
         System.out.println("1. Turn  \t2. Start\t3. Pause\t4. Exit");
         System.out.print("Select menu item: ");
         System.out.println();
+    }
+
+    private String getPositionView(Position position) {
+        return "(%d,%d)".formatted(position.row(), position.col());
     }
 
     private List<String> getFieldPicture() {

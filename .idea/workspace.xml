@@ -4,12 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a92e38ef-d1c4-4d1d-a427-fada1db04ae5" name="Changes" comment="inject Field in Creature">
+    <list default="true" id="a92e38ef-d1c4-4d1d-a427-fada1db04ae5" name="Changes" comment="remove moveAction in Creature">
+      <change afterPath="$PROJECT_DIR$/src/main/java/models/entity/MovingCreature.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/view/View.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Configurator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/ConfigurationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ConsoleRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/ConsoleView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/EntitySimpleFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/EntitySimpleFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Simulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Simulation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/models/entity/AliveEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/entity/AliveEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Simulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Simulation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/entity/AliveEntity.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/models/entity/Creature.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/entity/Creature.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/entity/Herbivore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/entity/Herbivore.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/models/entity/Predator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/entity/Predator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -21,9 +27,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Record" />
-        <option value="Interface" />
         <option value="Enum" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -146,8 +152,35 @@
       <option name="project" value="LOCAL" />
       <updated>1732842709044</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="remove moveAction in Creature">
+      <option name="closed" value="true" />
+      <created>1732846104895</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1732846104895</updated>
+    </task>
+    <task id="LOCAL-00008" summary="remove moveAction in Creature">
+      <option name="closed" value="true" />
+      <created>1732846127293</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1732846127293</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Entity hierarchy, prey finder" />
@@ -156,6 +189,7 @@
     <MESSAGE value="Loader" />
     <MESSAGE value="Main" />
     <MESSAGE value="inject Field in Creature" />
-    <option name="LAST_COMMIT_MESSAGE" value="inject Field in Creature" />
+    <MESSAGE value="remove moveAction in Creature" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove moveAction in Creature" />
   </component>
 </project>

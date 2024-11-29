@@ -6,7 +6,7 @@ import utils.PreyFinder;
 
 import java.util.List;
 
-public class Predator extends Creature {
+public class Predator extends MovingCreature {
     private final int attackPower;
 
     public Predator(Position position, Field field, PreyFinder preyFinder, int health, int speed, int attackPower) {
@@ -21,10 +21,16 @@ public class Predator extends Creature {
 
     @Override
     public void performNearSelf(List<Position> positions) {
-        Creature entity = getEntityFromField(positions.get(0));
+        Position position = positions.get(0);
+        MovingCreature entity = (MovingCreature) getEntityFromField(position);
         entity.takeDamage(attackPower);
+        String s = "%s%s attack %s%s";
         if (!entity.isAlive()) {
-            removeEntityOnField(positions.get(0));
+            removeEntityOnField(position);
+            s += " and eats it";
+        }
+        if (creatureActionCallback != null) {
+            creatureActionCallback.execute(s, this, this.position, entity, position);
         }
     }
 }

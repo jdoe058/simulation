@@ -1,9 +1,14 @@
+package controllers;
+
 import models.Field;
+import utils.EntitySimpleFactory;
 import utils.PreyFinder;
+import view.ConsoleView;
+import view.View;
 
 import java.util.ArrayList;
 
-public class Configurator {
+public class ConfigurationController {
     public static final int DEFAULT_WIDTH = 14;
     public static final int DEFAULT_HEIGHT = 15;
     public static final int DEFAULT_ROCK_PERCENT = 15;
@@ -12,18 +17,19 @@ public class Configurator {
     public static final int DEFAULT_HERBIVORE_PERCENT = 5;
     public static final int DEFAULT_PREDATOR_PERCENT = 2;
 
-    public Simulation configure () {
+    public SimulationController configure () {
         Field field = new Field(DEFAULT_WIDTH, DEFAULT_HEIGHT);
+        View<String> consoleView = new ConsoleView(field, new ArrayList<>());
+
         PreyFinder preyFinder = new PreyFinder(field);
-        EntitySimpleFactory factory = new EntitySimpleFactory(field, preyFinder);
-        ConsoleRenderer consoleRenderer = new ConsoleRenderer(field, new ArrayList<>());
+        EntitySimpleFactory factory = new EntitySimpleFactory(field, preyFinder, consoleView);
 
         create(factory::createRock, DEFAULT_ROCK_PERCENT);
         create(factory::createTree, DEFAULT_TREE_PERCENT);
         create(factory::createGrass, DEFAULT_GRASS_PERCENT);
         create(factory::createHerbivore, DEFAULT_HERBIVORE_PERCENT);
         create(factory::createPredator, DEFAULT_PREDATOR_PERCENT);
-        return new Simulation("Simple Word", field, consoleRenderer);
+        return new SimulationController("Simple Word", field, consoleView);
     }
 
     private void create(Runnable create, int percent) {

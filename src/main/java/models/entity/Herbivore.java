@@ -6,7 +6,7 @@ import utils.PreyFinder;
 
 import java.util.List;
 
-public class Herbivore extends Creature {
+public class Herbivore extends MovingCreature {
 
     public Herbivore(Position position, Field field, PreyFinder preyFinder, int health, int speed) {
         super(position, field, preyFinder, health, speed);
@@ -19,6 +19,11 @@ public class Herbivore extends Creature {
 
     @Override
     public void performNearSelf(List<Position> positions) {
-        removeEntityOnField(positions.get(0));
+        Position position = positions.get(0);
+        Entity entity = getEntityFromField(position);
+        removeEntityOnField(position);
+        if (creatureActionCallback != null) {
+            creatureActionCallback.execute("%s%s eats %s%s", this, this.position, entity, position);
+        }
     }
 }
