@@ -4,16 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a92e38ef-d1c4-4d1d-a427-fada1db04ae5" name="Changes" comment="Main">
+    <list default="true" id="a92e38ef-d1c4-4d1d-a427-fada1db04ae5" name="Changes" comment="inject Field in Creature">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/EntitySimpleFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/EntitySimpleFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Simulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Simulation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/models/entity/AliveEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/entity/AliveEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/models/entity/Creature.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/entity/Creature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/models/entity/Grass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/entity/Grass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/models/entity/Herbivore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/entity/Herbivore.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/models/entity/Predator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/entity/Predator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utils/PreyFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/PreyFinder.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,7 +138,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732779271201</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="inject Field in Creature">
+      <option name="closed" value="true" />
+      <created>1732842709044</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1732842709044</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -150,6 +155,7 @@
     <MESSAGE value="applied callback" />
     <MESSAGE value="Loader" />
     <MESSAGE value="Main" />
-    <option name="LAST_COMMIT_MESSAGE" value="Main" />
+    <MESSAGE value="inject Field in Creature" />
+    <option name="LAST_COMMIT_MESSAGE" value="inject Field in Creature" />
   </component>
 </project>

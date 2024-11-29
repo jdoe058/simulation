@@ -3,17 +3,11 @@ package models.entity;
 import models.Position;
 
 abstract public class AliveEntity extends Entity {
-    private Position position;
     private int health;
     private DamageCallback damageCallback;
 
-    public AliveEntity(Position position, int health) {
-        this.position = position;
+    public AliveEntity(int health) {
         this.health = health;
-    }
-
-    public Position getPosition() {
-        return position;
     }
 
     public boolean isAlive() {
@@ -25,10 +19,6 @@ abstract public class AliveEntity extends Entity {
         if (damageCallback != null) {
             damageCallback.execute(this, amount);
         }
-    }
-
-    public void setPosition(Position position) {
-        this.position = position;
     }
 
     public void setDamageCallback(DamageCallback damageCallback) {

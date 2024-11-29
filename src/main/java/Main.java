@@ -5,10 +5,10 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Configurator configurator = new Configurator();
         Simulation simulation = configurator.configure();
-        simulation.init();
-        simulation.turn();
         Thread thread = new Thread(simulation);
         thread.start();
+        simulation.turn();
+
         while (simulation.isRunning()) {
             switch (scanner.nextLine().trim()) {
                 case "1" -> simulation.turn();

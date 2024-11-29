@@ -1,6 +1,5 @@
 import models.CreaturePath;
 import models.Field;
-import models.Position;
 import models.entity.AliveEntity;
 import models.entity.Creature;
 import models.entity.Grass;
@@ -9,7 +8,6 @@ import models.entity.Herbivore;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static java.lang.Thread.sleep;
-
 
 public class Simulation implements Runnable {
     private final String title;
@@ -26,11 +24,6 @@ public class Simulation implements Runnable {
         this.consoleRenderer = consoleRenderer;
     }
 
-    public void init() {
-        field.get(AliveEntity.class).forEach(this::setEntityTakeDamageCallback);
-        field.get(Creature.class).forEach(this::setEntityCreaturePathCallback);
-    }
-
     public boolean isRunning() {
         return !field.get(Grass.class).isEmpty() && !field.get(Herbivore.class).isEmpty();
     }
@@ -43,15 +36,20 @@ public class Simulation implements Runnable {
         isPaused.set(true);
     }
 
+    private String getTitle() {
+        return "%s(%dx%d) Step: %02d".formatted(title, field.width, field.height, turnCount);
+    }
+
     public void turn() {
-        consoleRenderer.add("%s(%dx%d) Step: %02d"
-                .formatted(title, field.width, field.height, turnCount++));
-        field.get(Creature.class).forEach(this::moveCreature);
-        field.get(AliveEntity.class).forEach(this::removeCorpse);
+        consoleRenderer.add(getTitle());
+        turnCount++;
+        field.get(Creature.class).forEach(Creature::makeMove);
         consoleRenderer.render();
     }
 
     public void run() {
+        field.get(AliveEntity.class).forEach(this::setEntityTakeDamageCallback);
+        field.get(Creature.class).forEach(this::setEntityCreaturePathCallback);
         while (isRunning()) {
             if (!isPaused.get()) {
                 turn();
@@ -62,29 +60,9 @@ public class Simulation implements Runnable {
                 throw new RuntimeException(e);
             }
         }
-        consoleRenderer.add("%s(%dx%d) Step: %02d"
-                .formatted(title, field.width, field.height, turnCount));
+        consoleRenderer.add(getTitle());
         consoleRenderer.add("Simulation over!");
         consoleRenderer.render();
-    }
-
-    void moveCreature(Creature creature) {
-        if (!creature.isAlive()) {
-            return;
-        }
-        Position start = creature.getPosition();
-        Position finish = creature.makeMove();
-        if (start != finish) {
-            field.remove(start);
-            creature.setPosition(finish);
-            field.put(finish, creature);
-        }
-    }
-
-    void removeCorpse(AliveEntity entity) {
-        if (!entity.isAlive()) {
-            field.remove(entity.getPosition());
-        }
     }
 
     private void setEntityTakeDamageCallback(AliveEntity entity) {
@@ -92,7 +70,8 @@ public class Simulation implements Runnable {
     }
 
     private void printTakeDamage(AliveEntity entity, int amount) {
-        String s = "%s%s take %d damage".formatted(entity.getClass().getSimpleName(), entity.getPosition(), amount);
+//        String s = "%s%s take %d damage".formatted(entity.getClass().getSimpleName(), entity.getPosition(), amount);
+        String s = "%s take %d damage".formatted(entity.getClass().getSimpleName(), amount);
         if (!entity.isAlive()) {
             s += " and R.I.P";
         }

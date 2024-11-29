@@ -21,6 +21,10 @@ public class Predator extends Creature {
 
     @Override
     public void performNearSelf(List<Position> positions) {
-        getEntityFromField(positions.get(0)).takeDamage(attackPower);
+        Creature entity = getEntityFromField(positions.get(0));
+        entity.takeDamage(attackPower);
+        if (!entity.isAlive()) {
+            removeEntityOnField(positions.get(0));
+        }
     }
 }
