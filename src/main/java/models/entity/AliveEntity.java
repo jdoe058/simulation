@@ -20,16 +20,11 @@ abstract public class AliveEntity extends Entity {
         return health > 0;
     }
 
-    public void takeDamage() {
-        takeDamage(health);
-    }
-
     public void takeDamage(int amount) {
         health -= amount;
         if (damageCallback != null) {
             damageCallback.execute(this, amount);
         }
-        //System.out.printf("%s %s -%dhp%n", this.getClass().getSimpleName(), position.toString(), amount);
     }
 
     public void setPosition(Position position) {

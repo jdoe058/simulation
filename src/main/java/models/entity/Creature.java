@@ -1,29 +1,31 @@
 package models.entity;
 
 import models.CreaturePath;
+import models.Field;
 import models.Position;
 import utils.PreyFinder;
 
 import java.util.List;
 
 abstract public class Creature extends AliveEntity {
-
+    private final Field field;
     protected final PreyFinder preyFinder;
     private final int speed;
     private CreaturePathCallback creaturePathCallback;
 
-    public Creature(Position position, PreyFinder preyFinder, int health, int speed) {
+    public Creature(Position position, Field field, PreyFinder preyFinder, int health, int speed) {
         super(position, health);
+        this.field = field;
         this.preyFinder = preyFinder;
         this.speed = speed;
     }
 
     abstract boolean isValidGoal(Entity entity);
 
-    abstract public void performNearSelf(Entity entity);
+    abstract public void performNearSelf(List<Position> positions);
 
     public Position makeMove() {
-        List<AliveEntity> preys = preyFinder.findNearPrey(getPosition(), this::isValidGoal);
+        List<Position> preys = preyFinder.findNearPrey(getPosition(), this::isValidGoal);
         if (preys.isEmpty()) {
             CreaturePath path = preyFinder.findPathPrey(getPosition(), this::isValidGoal);
             if (creaturePathCallback != null) {
@@ -36,7 +38,7 @@ abstract public class Creature extends AliveEntity {
 
             return getPosition();
         }
-        performNearSelf(preys.get(0));
+        performNearSelf(preys);
         return getPosition();
     }
 
@@ -44,7 +46,15 @@ abstract public class Creature extends AliveEntity {
         this.creaturePathCallback = creaturePathCallback;
     }
 
+    protected AliveEntity getEntityFromField(Position position) {
+        return (AliveEntity) field.get(position).get();
+    }
+
+    protected void removeEntityOnField(Position position) {
+        field.remove(position);
+    }
+
     public interface CreaturePathCallback {
-        void execute (Creature creature, CreaturePath path);
+        void execute(Creature creature, CreaturePath path);
     }
 }

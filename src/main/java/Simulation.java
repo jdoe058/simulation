@@ -62,6 +62,8 @@ public class Simulation implements Runnable {
                 throw new RuntimeException(e);
             }
         }
+        consoleRenderer.add("%s(%dx%d) Step: %02d"
+                .formatted(title, field.width, field.height, turnCount));
         consoleRenderer.add("Simulation over!");
         consoleRenderer.render();
     }

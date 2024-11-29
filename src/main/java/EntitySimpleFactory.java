@@ -26,22 +26,22 @@ public class EntitySimpleFactory {
 
     public void createGrass() {
         Position position = getRandomFreePosition();
-        field.put(position, new Grass(position, 2));
+        field.put(position, new Grass());
     }
 
     public void createHerbivore() {
         Position position = getRandomFreePosition();
-        field.put(position, new Herbivore(position, preyFinder, 10, 3));
+        field.put(position, new Herbivore(position, field, preyFinder, 10, 3));
     }
 
     public void createPredator() {
         Position position = getRandomFreePosition();
-        field.put(position, new Predator(position, preyFinder, 10, 5, 6));
+        field.put(position, new Predator(position, field, preyFinder, 10, 5, 6));
     }
 
     private Position getRandomFreePosition() {
         if (field.freeCapacity() < 1) {
-            throw new IndexOutOfBoundsException();
+            throw new RuntimeException("Entity factory: Field is full");
         }
         Position position;
         do {

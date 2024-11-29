@@ -1,8 +1,10 @@
 package utils;
 
-import models.entity.*;
+import models.entity.Entity;
 import org.jetbrains.annotations.NotNull;
-import models.*;
+import models.Field;
+import models.Position;
+import models.CreaturePath;
 
 import java.util.*;
 
@@ -38,13 +40,13 @@ public class PreyFinder {
         return start;
     }
 
-    public List<AliveEntity> findNearPrey(Position position, Validator validator) {
-        List<AliveEntity> list = new ArrayList<>();
+    public List<Position> findNearPrey(Position position, Validator validator) {
+        List<Position> list = new ArrayList<>();
         for (Position p : findNearAllPositions(position)) {
             Optional<Entity> entity = field.get(p);
             if (entity.isPresent()) {
                 if (validator.isValid(entity.get())) {
-                    list.add((AliveEntity) entity.get());
+                    list.add(p);
                 }
             }
         }
