@@ -1,7 +1,5 @@
 package models.entity;
 
-import models.Position;
-
 abstract public class AliveEntity extends Entity {
     private int health;
     private DamageCallback damageCallback;
